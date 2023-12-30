@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # APPS
     "home.apps.HomeConfig",
     "polls.apps.PollsConfig",
+    "hello.apps.HelloConfig",
 ]
 
 MIDDLEWARE = [

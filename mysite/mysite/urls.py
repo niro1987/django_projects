@@ -12,6 +12,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home/main.html')),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),                                                                                           
+    path("hello/", include('hello.urls')),
     re_path(r'^site/(?P<path>.*)$', serve,
         {'document_root': SITE_ROOT, 'show_indexes': True},
         name='site_path'
