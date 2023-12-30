@@ -19,3 +19,5 @@ def hello_view(request):
     else:
         response.set_cookie('foo', 1)
     response.set_cookie('dj4e_cookie', '064c0ef4', max_age=1000)
+
+    return response
