@@ -12,7 +12,7 @@ def hello_view(request):
     old_value = request.COOKIES.get('foo', None)
     response = HttpResponse(
         'Cookie value is ' + str(old_value) +
-        '<br>num_visits is ' + str(num_visits))
+        '<br>view count=' + str(num_visits))
     
     if old_value is not None:
         response.set_cookie('foo', int(old_value) + 1)
