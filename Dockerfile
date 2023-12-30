@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 RUN \
     apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y upgrade
+    && apt-get -y upgrade \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
