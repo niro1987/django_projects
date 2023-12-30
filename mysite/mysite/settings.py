@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Extensions
+    "django_extensions",
     # APPS
     "home.apps.HomeConfig",
     "polls.apps.PollsConfig",
