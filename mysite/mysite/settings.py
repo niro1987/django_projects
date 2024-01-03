@@ -30,13 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     # Extensions - installed with requirements.txt
-    'django_extensions', 
-    'crispy_forms',  
-    'crispy_bootstrap5',  
-    'rest_framework', 
-    'social_django',  
+    'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'rest_framework',
+    'social_django',
     'taggit',
-    'home.apps.HomeConfig',  
+    'home.apps.HomeConfig',
+    'ads.apps.AdsConfig',
 
     # Sample Applications - don't copy
     # 'hello.apps.HelloConfig',
