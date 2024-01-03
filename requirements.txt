@@ -1,2 +1,7 @@
 django==4.2.7
 django-extensions==3.2.3
+django-crispy-forms
+crispy-bootstrap5
+djangorestframework
+social-auth-app-django
+django-taggit
