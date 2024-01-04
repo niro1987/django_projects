@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/devcontainers/python:3.9
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DEVELOPMENT=1
 
 # Install updates
 RUN \
