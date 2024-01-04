@@ -34,7 +34,7 @@ class AdListView(OwnerListView):
             rows = request.user.favorite_ads.values('id')
             # favorites = [2, 4, ...] using list comprehension
             favorites = [ row['id'] for row in rows ]
-        ctx = {'ad_list' : ad_list, 'favorites': favorites}
+        ctx = {'ad_list' : ad_list, 'favorites': favorites, 'search': search_str}
         return render(request, self.template_name, ctx)
 
 
