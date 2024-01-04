@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
@@ -14,7 +15,19 @@ class AdListView(OwnerListView):
     template_name = "ads/ad_list.html"
 
     def get(self, request) :
-        ad_list = Ad.objects.all()
+        search_str =  request.GET.get("search", False)
+        if search_str:
+            # Simple title-only search
+            # objects = Post.objects.filter(title__contains=strval).select_related().distinct().order_by('-updated_at')[:10]
+
+            # Multi-field search
+            # __icontains for case-insensitive search
+            query = Q(title__icontains=search_str) 
+            query.add(Q(text__icontains=search_str), Q.OR)
+            ad_list = Ad.objects.filter(query).select_related().distinct().order_by('-updated_at')[:10]
+        else:
+            ad_list = Ad.objects.all().order_by('-updated_at')[:10]
+
         favorites = list()
         if request.user.is_authenticated:
             # rows = [{'id': 2}, {'id': 4} ... ]  (A list of rows)
