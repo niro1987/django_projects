@@ -17,6 +17,7 @@ class AdListView(OwnerListView):
 
 class AdDetailView(OwnerDetailView):
     model = Ad
+    template_name = 'ads/ad_detail.html'
 
     def get(self, request, pk) :
         x = get_object_or_404(Ad, id=pk)
