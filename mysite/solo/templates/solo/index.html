@@ -1,0 +1,12 @@
+<h1>Welcome to assingment Solo by Niels Perfors</h1>
+{% if result %}
+    <p>Your result is {{ result }}</p>
+{% endif %}
+{% if form.errors %}
+  <p>{{ form.errors }}</p>
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
