@@ -8,20 +8,6 @@ from ads.models import Ad, Comment, Fav
 from ads.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 from ads.forms import CreateForm, CommentForm
 
-class ThingListView(OwnerListView):
-    model = Thing
-    template_name = "favs/list.html"
-
-    def get(self, request) :
-        thing_list = Thing.objects.all()
-        favorites = list()
-        if request.user.is_authenticated:
-            # rows = [{'id': 2}, {'id': 4} ... ]  (A list of rows)
-            rows = request.user.favorite_things.values('id')
-            # favorites = [2, 4, ...] using list comprehension
-            favorites = [ row['id'] for row in rows ]
-        ctx = {'thing_list' : thing_list, 'favorites': favorites}
-        return render(request, self.template_name, ctx)
 
 class AdListView(OwnerListView):
     model = Ad
