@@ -67,9 +67,13 @@ class AdCreateView(LoginRequiredMixin, View):
             return render(request, self.template_name, ctx)
 
         # Add owner to the model before saving
-        pic = form.save(commit=False)
-        pic.owner = self.request.user
-        pic.save()
+        ad = form.save(commit=False)
+        ad.owner = self.request.user
+        ad.save()
+
+        # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
+        form.save_m2m()
+
         return redirect(self.success_url)
 
 class AdUpdateView(OwnerUpdateView):
@@ -77,21 +81,24 @@ class AdUpdateView(OwnerUpdateView):
     success_url = reverse_lazy('ads:all')
 
     def get(self, request, pk):
-        pic = get_object_or_404(Ad, id=pk, owner=self.request.user)
-        form = CreateForm(instance=pic)
+        ad = get_object_or_404(Ad, id=pk, owner=self.request.user)
+        form = CreateForm(instance=ad)
         ctx = {'form': form}
         return render(request, self.template_name, ctx)
 
     def post(self, request, pk=None):
-        pic = get_object_or_404(Ad, id=pk, owner=self.request.user)
-        form = CreateForm(request.POST, request.FILES or None, instance=pic)
+        ad = get_object_or_404(Ad, id=pk, owner=self.request.user)
+        form = CreateForm(request.POST, request.FILES or None, instance=ad)
 
         if not form.is_valid():
             ctx = {'form': form}
             return render(request, self.template_name, ctx)
 
-        pic = form.save(commit=False)
-        pic.save()
+        ad = form.save(commit=False)
+        ad.save()
+
+        # https://django-taggit.readthedocs.io/en/latest/forms.html#commit-false
+        form.save_m2m()
 
         return redirect(self.success_url)
 
