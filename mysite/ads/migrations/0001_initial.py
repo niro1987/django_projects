@@ -14,7 +14,6 @@ class Migration(migrations.Migration):
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         (
             "taggit",
-            "0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx",
         ),
     ]
 
