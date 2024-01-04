@@ -19,7 +19,7 @@ class Ad(models.Model) :
     comments = models.ManyToManyField(settings.AUTH_USER_MODEL,
         through='Comment', related_name='comments_owned')
     favorites = models.ManyToManyField(settings.AUTH_USER_MODEL,
-        through='Fav', related_name='favorite_ads'),
+        through='Fav', related_name='favorite_ads')
     tags = TaggableManager(blank=True)
 
     # Shows up in the admin list
