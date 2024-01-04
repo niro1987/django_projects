@@ -24,6 +24,7 @@ class AdListView(OwnerListView):
             # __icontains for case-insensitive search
             query = Q(title__icontains=search_str) 
             query.add(Q(text__icontains=search_str), Q.OR)
+            query.add(Q(tags__name__in=[search_str]), Q.OR)
             ad_list = Ad.objects.filter(query).select_related().distinct()
         else:
             ad_list = Ad.objects.all()
